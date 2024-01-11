@@ -1,0 +1,7 @@
+/*Homework
+1. Construir api rest a doc abaixo e adequando ao case user: https://geekiebarbs.hashnode.dev/build-a-crud-api-with-typescript-nodejs-express-and-postgresql 
+
+2. como usar linux no windows. usar wsl ubuntu.
+2. pesquisar docker
+...Clovis de barros filho
+*/
