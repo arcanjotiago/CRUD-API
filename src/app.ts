@@ -1,19 +1,26 @@
+import {usersRoutes}  from "./routes";
+import { DefaltResponse } from "./defaltResponse";
 import express from 'express';
 import { Request, Response } from 'express';
 import bodyParser from "body-parser";
-// import {todoRoutes}  from "./routes";
 const app = express();
 const port = 3000;
-app.use(express.json());
-
 app.use(bodyParser.json());
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-);
-// app.use("/", todoRoutes);
+app.use(bodyParser.urlencoded({extended: true,}));
 
-app.listen(port, () => {
-  console.log(`server is listening on http://localhost:${port}....`);
-});
+app.use("/", usersRoutes);
+app.listen(port, () => {console.log(`App listening on port ${port}`)});
+
+
+router.get("/", (req: Request, res: Response) => {res.send("The users.app is working!");})
+
+
+
+
+
+
+
+
+
+
+// res.status(400).json(emailResponse);
