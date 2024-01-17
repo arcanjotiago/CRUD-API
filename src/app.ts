@@ -11,15 +11,3 @@ app.use("/", router);
 app.listen(port, () => {console.log(`App listening on port ${port}`)});
 
 router.get("/", (req: Request, res: Response) => {res.send("The users.app is working!");})
-
-
-
-
-
-
-
-
-
-
-
-// res.status(400).json(emailResponse);
