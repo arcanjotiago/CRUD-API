@@ -1,8 +1,9 @@
 export class DefaltResponse{
-    constructor(message:any, status:number){
+    constructor(status:number, message:string, additionalData:any){
         this.status = status;
         this.message = message;
     }
     status:number;
-    message:any;
+    message:string;
+    additionalData:any;
 }
