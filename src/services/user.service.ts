@@ -3,7 +3,6 @@ import pool from "../database/db-util";
 import {v4 as uuidv4} from 'uuid';
 import { DefaltResponse } from "../utils/response-util";
 
-
 export class UserService{
     
     private async querySearch(param:string, value:string){
@@ -37,7 +36,40 @@ export class UserService{
           }
     };
 
-    async addUser(user:User){
+    async getUserById(userId:string){
+        let responseRouter = new DefaltResponse(200, '', {})
+        
+        try {
+            if (userId == ':id') {
+                responseRouter.status = 400;
+                responseRouter.message = "Error: The user id do not be empty!";
+                
+                return responseRouter;
+            } 
+
+            const result = await pool.query(`SELECT * FROM users WHERE id = $1`, [userId]);
+
+            if (result.rowCount == 0){
+                responseRouter.status = 400;
+                responseRouter.message = "Error: The id informed was not found on database!";
+
+                return responseRouter;
+            }
+
+            const users:User[] = result.rows;
+            
+            responseRouter.status = 200;
+            responseRouter.message = 'Check the user bellow:';
+            responseRouter.additionalData = users;
+    
+            return responseRouter;
+
+        } catch (error) { 
+            throw new Error("Error get users from database");
+        };
+    };
+
+    async createUser(user:User){
         let responseRouter = new DefaltResponse(200, '', {})
         const errors:string[] = [];
         const querySearchEmail = await this.querySearch('email', user.email);
@@ -99,8 +131,8 @@ export class UserService{
         try {
             await pool.query("DELETE FROM users WHERE id = $1", [userId]);
             responseRouter.status = 200;
-            responseRouter.message = `Sucessful: The user informed has been deleted!`;
-            responseRouter.additionalData = userId;
+            responseRouter.message = `The user informed has been deleted!`;
+            responseRouter.additionalData = `userId: ${userId}`;
             return responseRouter;
         } 
         catch (error) {

@@ -13,7 +13,13 @@ router.get("/status", (req: Request, res: Response) => {
 router.get("/users", async (req: Request, res: Response) => {
     const userService = new UserService();
     const result = await userService.getUser();
-    
+    res.json(result);   
+});
+
+router.get("/users/:id", async (req: Request, res: Response) => {
+    const userId = req.params.id.toString()
+    const userService = new UserService();
+    const result = await userService.getUserById(userId);
     res.json(result);   
 });
 
@@ -21,7 +27,7 @@ router.get("/users", async (req: Request, res: Response) => {
 router.post("/users", async (req: Request, res: Response) => {
     const user:User = req.body;
     const userService = new UserService();
-    const result = await userService.addUser(user);
+    const result = await userService.createUser(user);
     
     if (result.status === 400){
         return res.status(400).json(result);
