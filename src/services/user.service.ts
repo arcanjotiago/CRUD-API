@@ -1,7 +1,7 @@
 import {User} from "../interfaces/user";
 import pool from "../database/db-util";
 import {v4 as uuidv4} from 'uuid';
-import { DefaltResponse } from "../utils/response-util";
+import { DefaltResponse } from "../utils/defaltResponse";
 
 export class UserService{
     
@@ -20,20 +20,25 @@ export class UserService{
     };
 
     async getUser(){
-        let responseRouter = new DefaltResponse(200, '', {})
-        const result = await pool.query("SELECT * FROM users");
-        const users:User[] = result.rows;
-
         try {
+            let responseRouter = new DefaltResponse(200, '', {})
+            const result = await pool.query("SELECT * FROM users");
+            const users:User[] = result.rows;
+
+            if (users.length == 0){
+                responseRouter.status = 200;
+                responseRouter.message = 'The user list is empty!';
+                return responseRouter;
+            };
+
             responseRouter.status = 200;
             responseRouter.message = 'Check the list of users bellow:';
             responseRouter.additionalData = users;
             return responseRouter;
-          } 
           
-          catch (error) { 
+        } catch (error) { 
             throw new Error("Error get users from database");  
-          }
+        }
     };
 
     async getUserById(userId:string){

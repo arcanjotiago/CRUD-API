@@ -1,11 +1,11 @@
 import {UserService} from '../services/user.service';
-import { DefaltResponse } from '../utils/response-util';
+import { DefaltResponse } from '../utils/defaltResponse';
 import {User} from "../interfaces/user";
 import { Router, Request, Response} from "express";
 const router = Router();
 
 router.get("/status", (req: Request, res: Response) => {
-    const responseRouter = new DefaltResponse(200, "list users.app is working!", {})
+    const responseRouter = new DefaltResponse(200, "OK!", {})
     res.send(responseRouter);
 })
 
