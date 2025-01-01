@@ -1,25 +1,25 @@
 {
-  "name": "list-users.app",
+  "name": "CRUD-API",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node dist/app.js",
-    "start-dev": "nodemon src/app.ts",
+    "start:dev": "nodemon src/app.ts",
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/arcanjotiago/list-users.app.git"
+    "url": "git+https://github.com/arcanjotiago/CRUD-API.app.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/arcanjotiago/list-users.app/issues"
+    "url": "https://github.com/arcanjotiago/CRUD-API.app/issues"
   },
-  "homepage": "https://github.com/arcanjotiago/list-users.app#readme",
+  "homepage": "https://github.com/arcanjotiago/CRUD-API.app#readme",
   "dependencies": {
     "@types/express": "^4.17.21",
     "@types/node": "^20.11.5",
